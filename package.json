@@ -1,0 +1,29 @@
+{
+  "name": "desafiofinalpt1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./src/server.js",
+    "dev": "nodemon ./src/server.js --ignore __tests__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasAraujo44/DesafioFinalPt1.git"
+  },
+  "author": "Lucas Araujo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucasAraujo44/DesafioFinalPt1/issues"
+  },
+  "homepage": "https://github.com/LucasAraujo44/DesafioFinalPt1#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.3.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
