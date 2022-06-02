@@ -1,4 +1,4 @@
-const CarService = require('../repository/CarRepository')
+const CarService = require('../service/CarService')
 
 class CarController {
    async create(req, res) {
@@ -10,3 +10,4 @@ class CarController {
         }
     }
 }
+module.exports = new CarController()
