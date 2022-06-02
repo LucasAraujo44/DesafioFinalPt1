@@ -17,6 +17,10 @@ class CarService {
         const result = await CarRepository.getById(payload);
         return result;
       }
+      async deleteCar(payload) {
+        const result = await CarRepository.deleteCar(payload);
+        return result;
+      }
 }
 
 module.exports = new CarService()

@@ -53,6 +53,28 @@ class CarController {
             });
         }
     }
+    async delete(req, res) {
+        try {
+          const result = await CarService.deleteCar(req.params.id);
+          return res.status(200).json({
+            message: "Success",
+            details: [
+              {
+                message: `The id was successfully deleted`,
+              },
+            ],
+          });
+        } catch (error) {
+          return res.status(400).json({
+            message: "Success",
+            details: [
+              {
+                message: `Id not found`,
+              },
+            ],
+          });
+        }
+      }
 
 }
 module.exports = new CarController()
