@@ -13,7 +13,10 @@ class CarService {
         const result = await CarRepository.updateCar(id, body);
         return result;
       }
-    
+      async getById(payload) {
+        const result = await CarRepository.getById(payload);
+        return result;
+      }
 }
 
 module.exports = new CarService()

@@ -18,13 +18,16 @@ class CarRepository {
         };
         const options = {
           page: 0,
-          limit: 3,
+          limit: 20,
           customLabels: paginateFields,
         };
         return CarSchema.paginate(payload, options, {});
       }
       async updateCar(id, body) {
         return CarSchema.findByIdAndUpdate(id, body);
+      }
+      async getById(payload) {
+        return CarSchema.findById(payload);
       }
 }
 module.exports = new CarRepository()
