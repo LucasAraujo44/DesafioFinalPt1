@@ -9,6 +9,11 @@ class CarService {
         const result = await CarRepository.list(payload)
         return result
     }
+    async updateCar(id, body) {
+        const result = await CarRepository.updateCar(id, body);
+        return result;
+      }
+    
 }
 
 module.exports = new CarService()

@@ -23,5 +23,8 @@ class CarRepository {
         };
         return CarSchema.paginate(payload, options, {});
       }
+      async updateCar(id, body) {
+        return CarSchema.findByIdAndUpdate(id, body);
+      }
 }
 module.exports = new CarRepository()

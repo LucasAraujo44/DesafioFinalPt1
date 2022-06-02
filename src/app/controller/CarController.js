@@ -18,5 +18,31 @@ class CarController {
         }
 
     }
+    async update(req, res) {
+        try {
+          const result = await CarService.updateCar(
+            req.params.id,
+            req.body
+          );
+          return res.status(200).json({
+            message: "Success",
+            details: [
+              {
+                message: `The id was successfully Updated`,
+              },
+            ],
+          });
+        } catch (error) {
+          return res.status(400).json({
+            message: "Bad Request",
+            details: [
+              {
+                message: error.message,
+              },
+            ],
+          });
+        }
+      }
+    
 }
 module.exports = new CarController()
