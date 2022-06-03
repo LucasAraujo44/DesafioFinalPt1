@@ -26,5 +26,8 @@ class PersonRepository {
     async updatePerson(id, body) {
         return PersonSchema.findByIdAndUpdate(id, body)
     }
+    async getById(payload) {
+        return PersonSchema.findById(payload);
+      }
 }
 module.exports = new PersonRepository() 

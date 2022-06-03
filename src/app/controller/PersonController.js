@@ -43,5 +43,15 @@ class PersonController {
             })
         }
     }
+    async getById(req, res) {
+        try {
+            const result = await PersonService.getById(req.params.id);
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(400).json({
+                message: "Bad Request ID no parameter",
+            });
+        }
+    }
 }
 module.exports = new PersonController()
