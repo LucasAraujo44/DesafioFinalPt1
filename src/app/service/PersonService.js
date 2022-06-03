@@ -19,5 +19,9 @@ class PersonService {
         const result = await PersonRepository.getById(payload);
         return result;
       }
+      async deletePerson(payload) {
+        const result = await PersonRepository.deletePerson(payload);
+        return result;
+      }
 }
 module.exports = new PersonService()
