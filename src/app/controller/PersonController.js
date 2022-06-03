@@ -18,5 +18,30 @@ class PersonController {
         }
 
     }
+    async update(req, res) {
+        try {
+            const result = await PersonService.updatePerson(
+                req.params.id,
+                req.body
+            );
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id_Person was successfully Updated`,
+                    },
+                ],
+            });
+        } catch (error) {
+            return res.status(400).json({
+                message: "Bad Request",
+                details: [
+                    {
+                        message: error.message,
+                    },
+                ],
+            })
+        }
+    }
 }
 module.exports = new PersonController()
