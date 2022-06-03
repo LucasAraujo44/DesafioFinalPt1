@@ -37,7 +37,7 @@ class CarController {
                 message: "Bad Request",
                 details: [
                     {
-                        message: error.message,
+                        message: "The id_Car not params",
                     },
                 ],
             });
@@ -45,9 +45,14 @@ class CarController {
     }
     async getById(req, res) {
         try {
-            const result = await CarService.getById(req.params.id);
+            const id = req.params.id
+            const result = await CarService.getById({_id: id});
+            if(!result){
+                res.status(404).json({ body: 'ID not found ' + id })
+                return
+            }
             return res.status(200).json(result);
-        } catch (error) {
+        } catch (error) { 
             return res.status(400).json({
                 message: "Bad Request ID no parameter",
             });

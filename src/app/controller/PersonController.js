@@ -20,34 +20,29 @@ class PersonController {
     }
     async update(req, res) {
         try {
-            const result = await PersonService.updatePerson(
-                req.params.id,
-                req.body
-            );
-            return res.status(200).json({
-                message: "Success",
-                details: [
-                    {
-                        message: `The id_Person was successfully Updated`,
-                    },
-                ],
-            });
+            const id = req.params.id
+            const result = await PersonService.updatePerson({_id: id}, req.body)
+            if(result.matchedCount === 0){
+                res.status(404).json({ body: 'Registro não encontrado para o id: ' + id })//envia como json e retorna status(404) qnd o usuario não é encontrado
+                return
+            }
+             res.status(200).json(req.body);
         } catch (error) {
             return res.status(400).json({
-                message: "Bad Request",
-                details: [
-                    {
-                        message: error.message,
-                    },
-                ],
+                message: "The id_person not params",
             })
         }
     }
     async getById(req, res) {
         try {
-            const result = await PersonService.getById(req.params.id);
+            const id = req.params.id
+            const result = await PersonService.getById({ _id: id });
+            if (!result) {
+                res.status(404).json({ body: 'ID not found ' + id })
+                return
+            }
             return res.status(200).json(result);
-        } catch (error) { 
+        } catch (error) {
             return res.status(400).json({
                 message: "Bad Request ID no parameter",
             });
@@ -55,25 +50,25 @@ class PersonController {
     }
     async delete(req, res) {
         try {
-          const result = await PersonService.deletePerson(req.params.id);
-          return res.status(200).json({
-            message: "Success",
-            details: [
-              {
-                message: `The id_Person was successfully deleted`,
-              },
-            ],
-          });
+            const result = await PersonService.deletePerson(req.params.id);
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id_Person was successfully deleted`,
+                    },
+                ],
+            });
         } catch (error) {
-          return res.status(400).json({
-            message: "Success",
-            details: [
-              {
-                message: `Id not found`,
-              },
-            ],
-          });
+            return res.status(400).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `Id not found`,
+                    },
+                ],
+            });
         }
-      }
+    }
 }
 module.exports = new PersonController()
