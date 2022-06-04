@@ -25,6 +25,7 @@ const PersonSchema = new mongoose.Schema(
     },
     canDrive: {
         type: String,
+        required: true,
         enum: {
             values: ["yes", "no"],
             message: "Value is not supported"
