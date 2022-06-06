@@ -19,26 +19,21 @@ const CarSchema = new mongoose.Schema({
         required: true
     },
     year: {
-        type: String,
+        type: Number,
         required: true
     },
     accessories: [
         {
             description: {
-                type: String,
-                required: true,
+                type: String
             },
             _id: false
-
-
         }],
     passengersQtd: {
-        type: String,
+        type: Number,
         required: true
 
     }
-
-
 })
 
 CarSchema.plugin(mongoosePaginate)
