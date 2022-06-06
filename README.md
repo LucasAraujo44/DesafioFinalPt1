@@ -38,12 +38,12 @@ Install the dependencies:
 Config the environment variables (.env)
 Inside of the project you have a .env.example file with the required configuration fields:
 
-DB_HOST =
-DB_USER =
-DB_PASS =
-DB_NAME =
-DB_PORT =
-DB_COLLECTION =
+      DB_HOST =
+      DB_USER =
+      DB_PASS =
+      DB_NAME =
+      DB_PORT =
+      DB_COLLECTION =
 
 Start the application
  npm start
@@ -57,7 +57,7 @@ http://localhost:3000/api/v1/car
     
 
         {
-            "_id": "629a9eeffc10dcca6b8cab32",
+            
             "model": "S10 2.8",
             "type": "Gol",
             "brand": "GM",
@@ -90,14 +90,13 @@ http://localhost:3000/api/v1/car
                 }
             ],
             "passengersQtd": 5,
-            "__v": 0
+           
         }
     
 
 Status Code: 201 Created
 
- {
-    "Vehicles": [
+ 
 
         {
             "_id": "629a9eeffc10dcca6b8cab32",
@@ -142,16 +141,17 @@ Status Code: 201 Created
     "offsets": 1
     }
 
-  Status Code: 400 Bad Request
 
- {
-     "message": "Bad Request",
-     "details": [
-         {
-             "message": "error.messsage of the req"
+Status Code: 400 Bad Request
+
+        {
+            "message": "Bad Request",
+            "details": [
+                {
+                    "message": "error.messsage of the req"
+                }
+            ]
          }
-     ]
-  }
 
 List Car
 GET
@@ -160,8 +160,8 @@ http://localhost:3000/api/v1/car/
 Res
 Status Code: 200 OK
 
-{
-    "Vehicles": [
+    {
+        "Vehicles": [
 
         {
             "_id": "629a9eeffc10dcca6b8cab32",
@@ -204,7 +204,8 @@ Status Code: 200 OK
     "limit": 20,
     "totalPages": 3,
     "offsets": 1
-}
+    }
+
 
 List Car by ID
 GET
@@ -257,7 +258,7 @@ Status Code: 200 OK
     "limit": 20,
     "totalPages": 3,
     "offsets": 1
-    
+    }
 
 Status Code: 400 Bad Request
 
@@ -320,7 +321,8 @@ Status Code: 200 OK
     "limit": 20,
     "totalPages": 3,
     "offsets": 1
-}
+    }
+
 
 
 Status Code: 400 Bad Request
@@ -382,15 +384,17 @@ Status Code: 204 No Content
     "limit": 20,
     "totalPages": 3,
     "offsets": 1
+    }
+
 
 Status Code: 400 Bad Request
 
-{
-    "message": "Bad Request",
-    "details": [
-        {
-            "message": "error.messsage of the req"
-        }
-    ]
-}
+     {
+         "message": "Bad Request",
+         "details": [
+             {
+                 "message": "error.messsage of the req"
+             }
+         ]
+     }
 
