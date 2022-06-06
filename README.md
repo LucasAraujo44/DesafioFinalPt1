@@ -6,6 +6,7 @@ Description
 Car and Person information management API - created using Node.js and MongoDB
 
 Topics
+
 🔹 Info about the project
 
 🔹 How to run the application
@@ -52,45 +53,45 @@ Create Car
 POST
 
 http://localhost:3000/api/v1/car 
-Body Example
-  {
-  "model": "S10 2.8",
-  "type": "sedan",
-  "brand": "GM",
-  "color": "branco",
-  "year": "2021",
-  "accessories": [
-    {
-      "description": "Ar-condicionado"
-    },
-    {
-      "description": "Dir. Hidráulica"
-    },
-    {
-      "description": "Cabine Dupla"
-    },
-    {
-      "description": "Tração 4x4"
-    },
-    {
-      "description": "4 portas"
-    },
-    {
-      "description": "Diesel"
-    },
-    {
-      "description": "Air bag"
-    },
-    {
-      "description": "ABS"
-    }
-  ],
-  "passengersQtd": 5
-}
+ Body Example
+   {
+   "model": "S10 2.8",
+   "type": "sedan",
+   "brand": "GM",
+   "color": "branco",
+   "year": "2021",
+   "accessories": [
+     {
+       "description": "Ar-condicionado"
+     },
+     {
+       "description": "Dir. Hidráulica"
+     },
+     {
+       "description": "Cabine Dupla"
+     },
+     {
+       "description": "Tração 4x4"
+     },
+     {
+       "description": "4 portas"
+     },
+     {
+       "description": "Diesel"
+     },
+     {
+       "description": "Air bag"
+     },
+     {
+       "description": "ABS"
+     }
+   ],
+   "passengersQtd": 5
+ }
 
 Status Code: 201 Created
 
-{
+ {
     "model": "S10 2.8",
     "type": "sedan",
     "brand": "GM",
@@ -121,13 +122,13 @@ Status Code: 201 Created
         {
             "description": "ABS"
         }
-    ],
+     ],
     "passengersQtd": 5,
     "_id": "629e0040582b9a7b9d86a3b6",
     "__v": 0
-}
+  }
 
-Status Code: 400 Bad Request
+ Status Code: 400 Bad Request
 
 {
     "message": "Bad Request",
@@ -144,6 +145,7 @@ GET
 http://localhost:3000/api/v1/car/ 
 Res
 Status Code: 200 OK
+
 {
     "Vehicles": [
 
