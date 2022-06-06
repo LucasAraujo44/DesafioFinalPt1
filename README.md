@@ -397,4 +397,158 @@ Status Code: 400 Bad Request
              }
          ]
      }
+     
+     
+     
+    
+Person Endpoints
+Create Person
+POST
+http://localhost:3000/api/v1/person 
+ Body Example
+ 
+    
+         {
+           "name": "joaozinho ciclano",
+           "cpf": "131.147.860-49",
+           "birthDay": "03/03/2021",
+           "email": "joazinho@email.com",
+           "password": "123456",
+           "canDrive": "yes"
+         }
 
+    
+
+Status Code: 201 Created
+
+          {
+           "name": "Joaozinho ciclado ",
+           "cpf": "02228609285",
+           "birthDay": "20/12/2000",
+           "email": "joazinho@email.com",
+           "password": "$2a$10$1Uc/zQBXxkzC4oPnd2/6zeY8XxRR0pla4vQzNZkdcimhgYZiBHUQ.",
+           "canDrive": "yes",
+           "_id": "629e0b09582b9a7b9d86a3ba",
+           "__v": 0
+       }
+
+
+Status Code: 400 Bad Request
+
+        {
+            "message": "Bad Request",
+            "details": [
+                {
+                    "message": "error.messsage of the req"
+                }
+            ]
+         }
+         
+         
+List Person
+GET
+
+http://localhost:3000/api/v1/person/ 
+Res
+Status Code: 200 OK
+      
+     {
+       "name": "Lucas teste ",
+       "cpf": "02228609285",
+       "birthDay": "20/12/2000",
+       "email": "Lucas@email.com",
+       "password": "$2a$10$dxFdth1VrTvul5TTdXReHuACOBH9lC.d.IJL153rQ/so2qsVIEaTm",
+       "canDrive": "yes",
+       "_id": "629e0d0c582b9a7b9d86a3be",
+       "__v": 0
+   }
+   
+   
+List Person by ID
+GET
+
+http://localhost:3000/api/v1/person/:id
+Res
+Status Code: 200 OK
+
+     {
+           "name": "Lucas teste ",
+           "cpf": "02228609285",
+           "birthDay": "20/12/2000",
+           "email": "Lucas@email.com",
+           "password": "$2a$10$dxFdth1VrTvul5TTdXReHuACOBH9lC.d.IJL153rQ/so2qsVIEaTm",
+           "canDrive": "yes",
+           "_id": "629e0d0c582b9a7b9d86a3be",
+           "__v": 0
+       }sets": 1
+        }
+
+Status Code: 400 Bad Request
+
+                    {
+                        "message": "Bad Request",
+                        "details": [
+                            {
+                                "message": "error.messsage of the req"
+                            }
+                        ]
+                    }
+
+Update Person
+PUT
+
+http://localhost:3000/api/v1/person/:id 
+
+Status Code: 200 OK
+
+
+
+         {
+           "name": "Lucas teste ",
+           "cpf": "02228609285",
+           "birthDay": "20/12/2000",
+           "email": "Lucas@email.com",
+           "password": "$2a$10$dxFdth1VrTvul5TTdXReHuACOBH9lC.d.IJL153rQ/so2qsVIEaTm",
+           "canDrive": "yes",
+           "_id": "629e0d0c582b9a7b9d86a3be",
+           "__v": 0
+       }sets": 1
+        }
+
+
+Status Code: 400 Bad Request
+
+      {
+          "message": "Bad Request",
+          "details": [
+              {
+                  "message": "error.messsage of the req"
+              }
+          ]
+      }
+
+Delete Per
+DELETE
+
+http://localhost:3000/api/v1Person/:id 
+Status Code: 204 No Content 
+
+            {
+            "message": "Success",
+            "details": [
+                {
+                    "message": "The id_Person was successfully deleted"
+                }
+            ]
+            }
+
+Status Code: 400 Bad Request
+
+     {
+         "message": "Bad Request",
+         "details": [
+             {
+                 "message": "error.messsage of the req"
+             }
+         ]
+     }
