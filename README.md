@@ -1,7 +1,7 @@
 # DesafioFinalPt1
 Desafio final da Compass.uol parte 1
 
-Challenge 034- PB NodeJS - Spectrum Squad 
+Challenge 04- PB NodeJS - Spectrum Squad 
 Description
 Car and Person information management API - created using Node.js and MongoDB
 
@@ -13,7 +13,7 @@ Topics
 
 🔹 Car Endpoints
 
-🔹 Persont Endpoints
+🔹 Person Endpoints
 
 Info about the project 📚
 Libs:
@@ -527,7 +527,7 @@ Status Code: 400 Bad Request
           ]
       }
 
-Delete Per
+Delete Person
 DELETE
 
 http://localhost:3000/api/v1Person/:id 
