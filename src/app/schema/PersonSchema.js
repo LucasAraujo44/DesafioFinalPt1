@@ -7,15 +7,15 @@ const PersonSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true
+           // required: true
         },
         cpf: {
             type: String,
-            required: true
+            //required: true
         },
         birthDay: {
             type: String,
-            required: true
+           // required: true
         },
         email: {
             type: String,
@@ -28,7 +28,7 @@ const PersonSchema = new mongoose.Schema(
         },
         canDrive: {
             type: String,
-            required: true,
+           // required: true,
             enum: {
                 values: ["yes", "no"],
                 message: "Value is not supported"
