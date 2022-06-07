@@ -32,5 +32,8 @@ class PersonRepository {
     async deletePerson(payload) {
         return PersonSchema.findByIdAndDelete(payload);
       }
+    async findOneEmail(email){
+        return PersonSchema.findOne({email}).select('+password')
+    }
 }
 module.exports = new PersonRepository() 
