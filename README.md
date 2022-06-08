@@ -552,3 +552,33 @@ Status Code: 400 Bad Request
              }
          ]
      }
+     
+Authenticate Endpoints
+Create authenticate
+POST
+http://localhost:3000/api/v1/authenticate 
+
+ Body Example
+ 
+    
+                {
+                  "email": "Lucasaraujo@email.com",
+                  "password": "123456"
+               }
+
+    
+
+Status Code: 201 Created
+
+                 {
+                  "result": {
+                  "_id": "629f5e1e772021f55a6da429",
+                  "name": "Lucas teste ",
+                  "cpf": "02228609285",
+                  "birthDay": "20/12/2000",
+                  "email": "Lucasaraujo@email.com",
+                  "canDrive": "yes",
+                  "__v": 0
+                },
+               "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTQ2OTY2NjksImV4cCI6MTY1NDc4MzA2OX0.K9t6-GZ4KdL-Z3ASflf5XwgwTgc_D-PY2hgKBSWHrTw"
+                }
