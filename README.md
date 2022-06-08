@@ -555,7 +555,7 @@ Status Code: 400 Bad Request
      }
      
 Authenticate Endpoints
-Create authenticate
+Create Authenticate
 POST
 http://localhost:3000/api/v1/authenticate 
 
