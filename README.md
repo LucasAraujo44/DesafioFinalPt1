@@ -24,6 +24,7 @@ Libs:
 - bcrypt: ^5.0.1",
 - @joi/date: "^2.1.0"
 - mongoose-paginate-v2: v1.6.3
+- Jsonwebtoken: "^8.5.1"
 
 Node Version:
 v14.16.0
