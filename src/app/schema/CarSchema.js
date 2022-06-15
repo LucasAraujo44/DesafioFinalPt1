@@ -27,7 +27,6 @@ const CarSchema = new mongoose.Schema({
             description: {
                 type: String
             },
-            _id: false
         }],
     passengersQtd: {
         type: Number,
