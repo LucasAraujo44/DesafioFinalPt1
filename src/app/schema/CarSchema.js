@@ -34,6 +34,15 @@ const CarSchema = new mongoose.Schema({
 
     }
 })
+CarSchema.virtual("id_car").get(function () {
+    return this._id;
+  })
+  CarSchema.set("toJSON", {
+    virtuals: true,
+    transform: (doc, converted) => {
+      delete converted._id, delete converted.id;
+    },
+  })
 
 CarSchema.plugin(mongoosePaginate)
 const Car = mongoose.model('Car', CarSchema)

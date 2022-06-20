@@ -6,16 +6,13 @@ const bcrypt = require ('bcryptjs')
 const PersonSchema = new mongoose.Schema(
     {
         name: {
-            type: String,
-           // required: true
+            type: String
         },
         cpf: {
-            type: String,
-            //required: true
+            type: String
         },
         birthDay: {
-            type: String,
-           // required: true
+            type: String
         },
         email: {
             type: String,
@@ -28,7 +25,6 @@ const PersonSchema = new mongoose.Schema(
         },
         canDrive: {
             type: String,
-           // required: true,
             enum: {
                 values: ["yes", "no"],
                 message: "Value is not supported"
@@ -40,6 +36,16 @@ const PersonSchema = new mongoose.Schema(
         this.password = hash
         next()
     }) 
+    PersonSchema.virtual("id_user").get(function () {
+        return this._id;
+      })
+      PersonSchema.set("toJSON", {
+        virtuals: true,
+        transform: (doc, converted) => {
+          delete converted._id, delete converted.id;
+        },
+      })
+
 PersonSchema.plugin(mongoosePaginate)
 const Person = mongoose.model("Person", PersonSchema)
 

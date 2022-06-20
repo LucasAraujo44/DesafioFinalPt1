@@ -8,7 +8,8 @@ const RentalSchema = new mongoose.Schema({
     },
     cnpj: {
         type: String,
-        required: true
+        required: true,
+        
     },
     activities: {
         type: String,
@@ -47,6 +48,15 @@ const RentalSchema = new mongoose.Schema({
             _id: false
         }]
 })
+RentalSchema.virtual("id_rental").get(function () {
+    return this._id;
+  })
+  RentalSchema.set("toJSON", {
+    virtuals: true,
+    transform: (doc, converted) => {
+      delete converted._id, delete converted.id;
+    },
+  })
 
 RentalSchema.plugin(mongoosePaginate)
 const Rental = mongoose.model('Rental', RentalSchema)
