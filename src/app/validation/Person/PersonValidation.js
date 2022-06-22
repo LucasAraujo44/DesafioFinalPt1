@@ -10,11 +10,10 @@ module.exports = async (req, res, next) => {
             cpf: Joi.string().required().max(11),
             birthDay: Joi.date().format('DD/MM/YYYY').required(),
             email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net', 'br'] } }).required(),
-            //email: Joi.string().email({ minDomainSegments: 2 }).required(),
             password: Joi.string().alphanum().min(6).max(12).required(),
             canDrive: Joi.string().required().valid("yes", "no")
         })
-        const { error } = await schema.validate(req.body, { abortEarl: true })
+        const { error } = await schema.validate(req.body, { abortEarly: true })
         if (error) {
             throw {
                 message: 'Bad Request',

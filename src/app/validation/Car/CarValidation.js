@@ -12,7 +12,7 @@ module.exports =  (req, res, next) => {
             passengersQtd: Joi.number().integer().required().min(1).max(5),
 
         })
-        const { error } = schema.validate(req.body, { abortEarl: true })
+        const { error } = schema.validate(req.body, { abortEarly: true })
         if (error) {
             throw {
                 message: 'Bad Request',
