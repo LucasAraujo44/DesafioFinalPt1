@@ -38,14 +38,7 @@ class CarController {
                 ],
             });
         } catch (error) {
-            return res.status(400).json({
-                message: "Bad Request",
-                details: [
-                    {
-                        message: "The id_Car not params",
-                    },
-                ],
-            });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async getById(req, res) {
@@ -54,7 +47,7 @@ class CarController {
             const result = await CarService.getById(id);
             return res.status(200).json(result);
         } catch (error) {
-            return res.status(error.statusCode).json({description: error.description, message: error.message})
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async delete(req, res) {
@@ -69,14 +62,7 @@ class CarController {
                 ],
             });
         } catch (error) {
-            return res.status(400).json({
-                message: "Success",
-                details: [
-                    {
-                        message: `Id not found`,
-                    },
-                ],
-            });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
 
