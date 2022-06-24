@@ -1,20 +1,25 @@
 const CarService = require('../service/CarService')
+const IdNotFound = require('../Erros/IdNotFound')
 
 class CarController {
     async create(req, res) {
         try {
             const result = await CarService.create(req.body)
+            console.log('controller')
             return res.status(201).json(result)
         } catch (error) {
-            return res.status(400).json(error)
+            return res.status(400).json(error.message)
         }
     }
     async list(req, res) {
         try {
             const result = await CarService.list(req.query)
+            if (!result) {
+                res.status(204).json({ message: "server has successfully fulfilled the request and that there is no content to send in the response payload body" })
+            }
             return res.status(200).json(result)
         } catch (error) {
-            return res.status(400)
+            return res.status(500).json(error.message)
         }
 
     }
@@ -46,40 +51,34 @@ class CarController {
     async getById(req, res) {
         try {
             const id = req.params.id
-            const result = await CarService.getById({_id: id});
-            if(!result){
-                res.status(404).json({ body: 'ID not found ' + id })
-                return
-            }
+            const result = await CarService.getById(id);
             return res.status(200).json(result);
-        } catch (error) { 
-            return res.status(400).json({
-                message: "Bad Request ID no parameter",
-            });
+        } catch (error) {
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
         }
     }
     async delete(req, res) {
         try {
-          const result = await CarService.deleteCar(req.params.id);
-          return res.status(200).json({
-            message: "Success",
-            details: [
-              {
-                message: `The id was successfully deleted`,
-              },
-            ],
-          });
+            const result = await CarService.deleteCar(req.params.id);
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id was successfully deleted`,
+                    },
+                ],
+            });
         } catch (error) {
-          return res.status(400).json({
-            message: "Success",
-            details: [
-              {
-                message: `Id not found`,
-              },
-            ],
-          });
+            return res.status(400).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `Id not found`,
+                    },
+                ],
+            });
         }
-      }
+    }
 
 }
 module.exports = new CarController()

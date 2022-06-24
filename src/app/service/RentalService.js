@@ -1,5 +1,5 @@
 const RentalRepository = require('../repository/RentalRepository')
-const ZipCode = require('../validation/Rental/ZipCode')
+const ZipCode = require('../service/ZipCode')
 class RentalService {
   async create(payload) {
     let i = 0
