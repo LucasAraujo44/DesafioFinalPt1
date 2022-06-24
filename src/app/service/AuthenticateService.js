@@ -1,7 +1,8 @@
 const PersonRepository = require("../repository/PersonRepository")
 const bcrypt = require('bcryptjs')
 const jwt = require ('jsonwebtoken')
-const authConfig = require('../../config/auth.json')
+require('dotenv').config()
+//const authConfig = require('../../config/auth.json')
 const Person = require("../schema/PersonSchema")
 
 class AuthenticateService {
@@ -18,7 +19,7 @@ class AuthenticateService {
 
         }
         result.password = undefined
-        const token = jwt.sign({ _id: Person.id}, authConfig.secret,{
+        const token = jwt.sign({ _id: Person.id}, process.env.SECRET,{
             expiresIn: 86400
         } )
          return ({result, token}) 
