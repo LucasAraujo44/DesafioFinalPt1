@@ -1,4 +1,5 @@
 const Joi = require('joi')
+const badRequest = require('../../Erros/badRequest')
 
 module.exports =  (req, res, next) => {
     try {
@@ -14,15 +15,17 @@ module.exports =  (req, res, next) => {
         })
         const { error } = schema.validate(req.body, { abortEarly: true })
         if (error) {
-            throw {
+            throw new badRequest(error.message)
+        }
+          /*   throw {
                 message: 'Bad Request',
                 details: [ {
                   message : error.message
                 } ]
               };
-            }
+            } */
         return next()
     } catch (error) {
-        return res.status(400).json(error)
+        return res.status(error.statusCode).json(error.message)
     }
 }

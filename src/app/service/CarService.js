@@ -13,6 +13,9 @@ class CarService {
   }
   async updateCar(id, body) {
     const result = await CarRepository.updateCar(id, body);
+    if (!result) {
+      throw new IdNotFound(id)
+    }
     return result;
   }
   async getById(id) {
@@ -22,8 +25,11 @@ class CarService {
     }
     return result;
   }
-  async deleteCar(payload) {
-    const result = await CarRepository.deleteCar(payload);
+  async deleteCar(id) {
+    const result = await CarRepository.deleteCar(id);
+    if (!result) {
+      throw new IdNotFound(id)
+    }
     return result;
   }
 }
