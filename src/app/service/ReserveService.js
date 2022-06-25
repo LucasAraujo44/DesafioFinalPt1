@@ -1,4 +1,5 @@
 const ReserveRepository = require('../repository/ReserveRepository')
+const IdNotFound = require('../Erros/IdNotFound')
 
 class ReserveService{
     async createReserve(id_rental, body){
@@ -10,15 +11,24 @@ class ReserveService{
         return result
     }
     async updateReserve(id, body) {
-        const result = await ReserveRepository.updateReserve(id, body);
+        const result = await ReserveRepository.updateReserve(id, body)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
         return result
       }
-      async getByIdReserve(payload) {
-        const result = await ReserveRepository.getByIdReserve(payload);
+      async getByIdReserve(id) {
+        const result = await ReserveRepository.getByIdReserve(id)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
         return result
       }
-      async deleteReserve(payload) {
-        const result = await ReserveRepository.deleteReserve(payload);
+      async deleteReserve(id) {
+        const result = await ReserveRepository.deleteReserve(id)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
         return result
       }
 }
