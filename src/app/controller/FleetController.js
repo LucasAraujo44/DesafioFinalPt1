@@ -1,15 +1,14 @@
 const FleetService = require('../service/FleetService')
 
 class FleetController {
-     async create(req, res) {
+    async create(req, res) {
         try {
             const id_rental = req.params.id
             const result = await FleetService.create({ id_rental: id_rental }, req.body)
             return res.status(201).json(result)
         } catch (error) {
-            return res.status(400).json(error.message)
-        }
-    }  
+            return res.status(400).json(error)        }
+    }
     async listFleet(req, res) {
         try {
             const id_rental = req.params.id
@@ -20,32 +19,31 @@ class FleetController {
         }
     }
     async updateFleet(req, res) {
-            try {
-                const id = req.params.id
-                const result = await FleetService.updateFleet({_id: id}, req.body)
-                if(result.matchedCount === 0){
-                    res.status(404).json({ body: 'Not found: ' + id })
-                    return
-                }
-                 res.status(200).json({message: "Update is successfully "});
-            } catch (error) {
-                return res.status(400).json(error.message)
-            
+        try {
+            const result = await FleetService.updateFleet(
+                req.params.id,
+                req.body
+            );
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id was successfully Updated`,
+                    },
+                ],
+            });
+        } catch (error) {
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async getByIdFleet(req, res) {
         try {
             const id = req.params.id
-            const result = await FleetService.getByIdFleet({ _id: id });
-            if (!result) {
-                res.status(404).json({ body: 'ID not found ' + id })
-                return
-            }
+            const result = await FleetService.getByIdFleet(id);
             return res.status(200).json(result);
         } catch (error) {
-            return res.status(400).json(error.message);
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
-        
     }
     async deleteFleet(req, res) {
         try {
@@ -59,8 +57,8 @@ class FleetController {
                 ],
             });
         } catch (error) {
-            return res.status(400).json(error.message)
-        } 
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
+        }
     }
 }
 module.exports = new FleetController()
