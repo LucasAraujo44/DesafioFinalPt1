@@ -31,55 +31,35 @@ class RentalController {
                         message: `The id was successfully Updated`,
                     },
                 ],
-            });
+            })
         } catch (error) {
-            return res.status(400).json({
-                message: "Bad Request",
-                details: [
-                    {
-                        message: "The id_Car not params",
-                    },
-                ],
-            });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async getById(req, res) {
         try {
             const id = req.params.id
-            const result = await RentalService.getById({_id: id});
-            if(!result){
-                res.status(404).json({ body: 'ID not found ' + id })
-                return
-            }
-            return res.status(200).json(result);
-        } catch (error) { 
-            return res.status(400).json({
-                message: "Bad Request ID no parameter",
-            });
+            const result = await RentalService.getById(id)
+            return res.status(200).json(result)
+        } catch (error) {
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async delete(req, res) {
         try {
-          const result = await RentalService.deleteRental(req.params.id);
-          return res.status(200).json({
-            message: "Success",
-            details: [
-              {
-                message: `The id was successfully deleted`,
-              },
-            ],
-          });
+            const result = await RentalService.deleteRental(req.params.id);
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id was successfully deleted`,
+                    },
+                ],
+            });
         } catch (error) {
-          return res.status(400).json({
-            message: "Success",
-            details: [
-              {
-                message: `Id not found`,
-              },
-            ],
-          });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
-      }
+    }
 
 }
 module.exports = new RentalController()

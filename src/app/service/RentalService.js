@@ -1,4 +1,5 @@
 const RentalRepository = require('../repository/RentalRepository')
+const IdNotFound = require('../Erros/IdNotFound')
 const ZipCode = require('../service/ZipCode')
 class RentalService {
   async create(payload) {
@@ -24,16 +25,25 @@ class RentalService {
     return result
   }
   async updateRental(id, body) {
-    const result = await RentalRepository.updateRental(id, body);
-    return result;
+    const result = await RentalRepository.updateRental(id, body)
+    if (!result) {
+      throw new IdNotFound(id)
+    }
+    return result
   }
-  async getById(payload) {
-    const result = await RentalRepository.getById(payload);
-    return result;
+  async getById(id) {
+    const result = await RentalRepository.getById(id)
+    if (!result) {
+      throw new IdNotFound(id)
+    }
+    return result
   }
-  async deleteRental(payload) {
-    const result = await RentalRepository.deleteRental(payload);
-    return result;
+  async deleteRental(id) {
+    const result = await RentalRepository.deleteRental(id)
+    if (!result) {
+      throw new IdNotFound(id)
+    }
+    return result
   }
 }
 
