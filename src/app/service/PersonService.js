@@ -1,10 +1,12 @@
 const PersonRepository = require("../repository/PersonRepository")
-const Person = require("../schema/PersonSchema")
-
+const IdNotFound = require('../Erros/IdNotFound')
+const badRequest = require('../Erros/badRequest')
 class PersonService {
-    //Create
     async create(payload) {
         const result = await PersonRepository.create(payload)
+        if(!result){
+          throw new badRequest(payload)
+        }
         return result
     }
     async list(payload) {
@@ -12,15 +14,24 @@ class PersonService {
         return result
     }
     async updatePerson(id, body) {
-        const result = await PersonRepository.updatePerson(id, body);
+        const result = await PersonRepository.updatePerson(id, body)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
+        return result
+      }
+      async getById(id) {
+        const result = await PersonRepository.getById(id)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
         return result;
       }
-      async getById(payload) {
-        const result = await PersonRepository.getById(payload);
-        return result;
-      }
-      async deletePerson(payload) {
-        const result = await PersonRepository.deletePerson(payload);
+      async deletePerson(id) {
+        const result = await PersonRepository.deletePerson(id)
+        if (!result) {
+          throw new IdNotFound(id)
+        }
         return result;
       }
 }

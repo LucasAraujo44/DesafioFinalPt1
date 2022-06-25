@@ -26,8 +26,8 @@ class PersonRepository {
     async updatePerson(id, body) {
         return PersonSchema.findByIdAndUpdate(id, body)
     }
-    async getById(payload) {
-        return PersonSchema.findById(payload);
+    async getById(id) {
+        return PersonSchema.findById({_id: id});
     }
     async deletePerson(payload) {
         return PersonSchema.findByIdAndDelete(payload);
