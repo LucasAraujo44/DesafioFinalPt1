@@ -1,8 +1,7 @@
 const JoiDate = require('@joi/date')
 const Joi = require('joi').extend(JoiDate)
 const validateCpf = require('./CpfValidation')
-const {canDrive} = require('../../Enum/enums')
-const {email} = require('../../Enum/enums')
+const {canDrive,email} = require('../../Enum/enums')
 
 module.exports = async (req, res, next) => {
     try {
