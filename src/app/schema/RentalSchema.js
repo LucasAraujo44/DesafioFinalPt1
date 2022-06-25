@@ -41,8 +41,9 @@ const RentalSchema = new mongoose.Schema({
             },
             isFilial:{
                 type: String,
+                required: true,
                 enum: {
-                    values: [...isFilial],
+                    values: isFilial,
                     message: "Value is not supported ",
                   }
             },

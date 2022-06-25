@@ -18,7 +18,7 @@ const FleetSchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: {
-                values: [...status],
+                values: status,
                 message:  "Value is not supported ! ex: 'available', 'unavailable' or 'rented'  "
             }
         },
