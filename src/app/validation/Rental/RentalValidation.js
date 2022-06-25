@@ -1,5 +1,6 @@
 const Joi = require('joi')
 const {isFilial} = require('../../Enum/enums')
+const badRequest = require('../../Erros/badRequest')
 
 module.exports = (req, res, next) => {
     try {
@@ -13,15 +14,11 @@ module.exports = (req, res, next) => {
         })
         const { error } = schema.validate(req.body, { abortEarly: true })
         if (error) {
-            throw {
-                message: 'Bad Request',
-                details: [{
-                    message: error.message
-                }]
-            };
+            throw new badRequest(error.message)
         }
         return next()
     } catch (error) {
-        return res.status(400).json(error)
+        return res.status(error.statusCode).json(error.message)
+
     }
 }

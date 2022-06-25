@@ -17,13 +17,6 @@ module.exports =  (req, res, next) => {
         if (error) {
             throw new badRequest(error.message)
         }
-          /*   throw {
-                message: 'Bad Request',
-                details: [ {
-                  message : error.message
-                } ]
-              };
-            } */
         return next()
     } catch (error) {
         return res.status(error.statusCode).json(error.message)
