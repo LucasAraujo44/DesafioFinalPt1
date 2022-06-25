@@ -6,7 +6,7 @@ class PersonController {
             const result = await PersonService.create(req.body)
             return res.status(201).json(result)
         } catch (error) {
-            return res.status(error.statusCode).json({description: error.description, message: error.message})
+            return res.status(400).json(error)
         }
     }
     async list(req, res) {
