@@ -27,7 +27,7 @@ class CarRepository {
         return CarSchema.findByIdAndUpdate(id, body);
       }
       async getById(id) {
-        return CarSchema.findById({ _id: id });
+        return CarSchema.findById({_id: id});
       }
       async deleteCar(payload) {
         return CarSchema.findByIdAndDelete(payload);

@@ -1,20 +1,18 @@
 const CarService = require('../service/CarService')
-const IdNotFound = require('../Erros/IdNotFound')
 
 class CarController {
     async create(req, res) {
         try {
             const result = await CarService.create(req.body)
-            console.log('controller')
             return res.status(201).json(result)
         } catch (error) {
-            return res.status(400).json(error.message)
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
         }
     }
     async list(req, res) {
         try {
             const result = await CarService.list(req.query)
-            if (!result) {
+            if (result === 0) {
                 res.status(204).json({ message: "server has successfully fulfilled the request and that there is no content to send in the response payload body" })
             }
             return res.status(200).json(result)
@@ -36,16 +34,16 @@ class CarController {
                         message: `The id was successfully Updated`,
                     },
                 ],
-            });
+            })
         } catch (error) {
-            return res.status(error.statusCode).json({ description: error.description, message: error.message })
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
         }
     }
     async getById(req, res) {
         try {
             const id = req.params.id
-            const result = await CarService.getById(id);
-            return res.status(200).json(result);
+            const result = await CarService.getById(id)
+            return res.status(200).json(result)
         } catch (error) {
             return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }

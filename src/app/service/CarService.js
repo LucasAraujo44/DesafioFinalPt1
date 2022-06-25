@@ -1,10 +1,12 @@
 const CarRepository = require('../repository/CarRepository')
 const IdNotFound = require('../Erros/IdNotFound')
-const Car = require('../schema/CarSchema')
 const badRequest = require('../Erros/badRequest')
 class CarService {
   async create(payload) {
     const result = await CarRepository.create(payload)
+    if(!result){
+      throw new badRequest(payload)
+    }
     return result
   }
   async list(payload) {
@@ -23,14 +25,14 @@ class CarService {
     if (!result) {
       throw new IdNotFound(id)
     }
-    return result;
+    return result
   }
   async deleteCar(id) {
     const result = await CarRepository.deleteCar(id);
     if (!result) {
       throw new IdNotFound(id)
     }
-    return result;
+    return result
   }
 }
 
