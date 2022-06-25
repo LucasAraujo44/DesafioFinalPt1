@@ -10,14 +10,16 @@ const PersonSchema = new mongoose.Schema(
             type: String
         },
         cpf: {
-            type: String
+            type: String,
+            unique: true
         },
         birthDay: {
             type: String
         },
         email: {
             type: String,
-            required: true
+            required: true,
+            unique:true
         },
         password: {
             type: String,
