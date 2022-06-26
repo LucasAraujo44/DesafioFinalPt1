@@ -1,26 +1,39 @@
 const CarRepository = require('../repository/CarRepository')
-const Car = require('../schema/CarSchema')
+const IdNotFound = require('../Erros/IdNotFound')
+const badRequest = require('../Erros/badRequest')
 class CarService {
-   async create(payload) {
-        const result = await CarRepository.create(payload)
-        return result
+  async create(payload) {
+    const result = await CarRepository.create(payload)
+    if(!result){
+      throw new badRequest(payload)
     }
-    async list(payload) {
-        const result = await CarRepository.list(payload)
-        return result
+    return result
+  }
+  async list(payload) {
+    const result = await CarRepository.list(payload)
+    return result
+  }
+  async updateCar(id, body) {
+    const result = await CarRepository.updateCar(id, body);
+    if (!result) {
+      throw new IdNotFound(id)
     }
-    async updateCar(id, body) {
-        const result = await CarRepository.updateCar(id, body);
-        return result;
-      }
-      async getById(payload) {
-        const result = await CarRepository.getById(payload);
-        return result;
-      }
-      async deleteCar(payload) {
-        const result = await CarRepository.deleteCar(payload);
-        return result;
-      }
+    return result;
+  }
+  async getById(id) {
+    const result = await CarRepository.getById(id);
+    if (!result) {
+      throw new IdNotFound(id)
+    }
+    return result
+  }
+  async deleteCar(id) {
+    const result = await CarRepository.deleteCar(id);
+    if (!result) {
+      throw new IdNotFound(id)
+    }
+    return result
+  }
 }
 
 module.exports = new CarService()

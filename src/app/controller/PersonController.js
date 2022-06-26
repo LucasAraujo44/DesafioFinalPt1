@@ -20,32 +20,29 @@ class PersonController {
     }
     async update(req, res) {
         try {
-            const id = req.params.id
-            const result = await PersonService.updatePerson({_id: id}, req.body)
-            if(result.matchedCount === 0){
-                res.status(404).json({ body: 'Registro não encontrado para o id: ' + id })//envia como json e retorna status(404) qnd o usuario não é encontrado
-                return
-            }
-             res.status(200).json(req.body);
-        } catch (error) {
-            return res.status(400).json({
-                message: "The id_person not params",
+            const result = await PersonService.updatePerson(
+                req.params.id,
+                req.body
+            );
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id was successfully Updated`,
+                    },
+                ],
             })
+        } catch (error) {
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async getById(req, res) {
         try {
             const id = req.params.id
-            const result = await PersonService.getById({ _id: id });
-            if (!result) {
-                res.status(404).json({ body: 'ID not found ' + id })
-                return
-            }
-            return res.status(200).json(result);
+            const result = await PersonService.getById(id)
+            return res.status(200).json(result)
         } catch (error) {
-            return res.status(400).json({
-                message: "Bad Request ID no parameter",
-            });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
     async delete(req, res) {
@@ -60,14 +57,7 @@ class PersonController {
                 ],
             });
         } catch (error) {
-            return res.status(400).json({
-                message: "Success",
-                details: [
-                    {
-                        message: `Id not found`,
-                    },
-                ],
-            });
+            return res.status(error.statusCode).json({ description: error.description, message: error.message })
         }
     }
 }

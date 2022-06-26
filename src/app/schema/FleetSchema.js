@@ -1,4 +1,5 @@
 const mongoose = require ('mongoose')
+const {status} = require('../Enum/enums')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
 const FleetSchema = new mongoose.Schema(
@@ -17,7 +18,7 @@ const FleetSchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: {
-                values: ["available", "unavailable", "rented"],
+                values: status,
                 message:  "Value is not supported ! ex: 'available', 'unavailable' or 'rented'  "
             }
         },

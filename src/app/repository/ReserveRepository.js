@@ -27,8 +27,8 @@ class ReserveRepository {
       async updateReserve(id, body) {
         return ReserveSchema.findByIdAndUpdate(id, body)
       }
-      async getByIdReserve(payload) {
-        return ReserveSchema.findById(payload)
+      async getByIdReserve(id) {
+        return ReserveSchema.findById(id)
     }
     async deleteReserve(payload) {
         return ReserveSchema.findByIdAndDelete(payload);

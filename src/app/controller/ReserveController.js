@@ -4,7 +4,7 @@ class ReserveController {
     async createReserve(req, res) {
         try {
             const id_rental = req.params.id
-            const result = await ReserveService.createReserve({ id_rental: id_rental }, req.body)
+            const result = await ReserveService.createReserve({id_rental}, req.body)
             return res.status(201).json(result)
         } catch (error) {
             return res.status(400).json(error.message)
@@ -13,7 +13,7 @@ class ReserveController {
     async listReserve(req, res) {
         try {
             const id_rental = req.params.id
-            const result = await ReserveService.listReserve({ id_rental: id_rental }, req.query)
+            const result = await ReserveService.listReserve({id_rental}, req.query)
             return res.status(200).json(result)
         } catch (error) {
             return res.status(400).json(error.message)
@@ -21,31 +21,30 @@ class ReserveController {
     }
     async updateReserve(req, res) {
         try {
-            const id = req.params.id
-            const result = await ReserveService.updateReserve({ _id: id }, req.body)
-            if (result.matchedCount === 0) {
-                res.status(404).json({ body: 'Not found: ' + id })
-                return
-            }
-            res.status(200).json({ message: "Update is successfully " });
+            const result = await ReserveService.updateReserve(
+                req.params.id,
+                req.body
+            );
+            return res.status(200).json({
+                message: "Success",
+                details: [
+                    {
+                        message: `The id was successfully Updated`,
+                    },
+                ],
+            })
         } catch (error) {
-            return res.status(400).json(error.message)
-
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
         }
     }
     async getByIdReserve(req, res) {
         try {
             const id = req.params.id
-            const result = await ReserveService.getByIdReserve({ _id: id });
-            if (!result) {
-                res.status(404).json({ body: 'ID not found ' + id })
-                return
-            }
+            const result = await ReserveService.getByIdReserve(id);
             return res.status(200).json(result);
         } catch (error) {
-            return res.status(400).json(error.message);
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
         }
-        
     }
     async deleteReserve(req, res) {
         try {
@@ -59,7 +58,8 @@ class ReserveController {
                 ]
             })
         } catch (error) {
-            return res.status(400).json(error.message)
+            return res.status(error.statusCode).json({description: error.description, message: error.message})
+
         } 
     }
 }

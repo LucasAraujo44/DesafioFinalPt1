@@ -27,8 +27,8 @@ class FleetRepository {
       async updateFleet(id, body) {
         return FleetSchema.findByIdAndUpdate(id, body)
       }
-      async getByIdFleet(payload) {
-        return FleetSchema.findById(payload)
+      async getByIdFleet(id) {
+        return FleetSchema.findById({_id: id})
     }
     async deleteFleet(payload) {
         return FleetSchema.findByIdAndDelete(payload);

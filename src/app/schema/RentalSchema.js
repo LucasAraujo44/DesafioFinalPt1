@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const {isFilial} = require('../Enum/enums')
 const mongoosePaginate = require('mongoose-paginate-v2')
 
 const RentalSchema = new mongoose.Schema({
@@ -40,8 +41,9 @@ const RentalSchema = new mongoose.Schema({
             },
             isFilial:{
                 type: String,
+                required: true,
                 enum: {
-                    values: ["true", "false"],
+                    values: isFilial,
                     message: "Value is not supported ",
                   }
             },
